@@ -3,7 +3,6 @@ package com.mazza.crud.pessoas.service.impl;
 import java.time.LocalDate;
 import java.util.Optional;
 
-import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
@@ -16,7 +15,10 @@ import com.mazza.crud.pessoas.model.Pessoa;
 import com.mazza.crud.pessoas.repository.PessoaRepository;
 import com.mazza.crud.pessoas.service.PessoaService;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class PessoaServiceImpl implements PessoaService {
 
 	public PessoaRepository pessoaRepository;
@@ -52,8 +54,8 @@ public class PessoaServiceImpl implements PessoaService {
 	}
 
 	@Override
-	public Page<PessoaDTO> findByExample(PessoaDTO pessoaExample, PageRequest pageOptions) {
-		return pessoaRepository.findAll(Example.of(pessoaMapper.toModel(pessoaExample)), pageOptions)
+	public Page<PessoaDTO> findAll(PageRequest pageOptions) {
+		return pessoaRepository.findAll(pageOptions)
 				.map(pessoaMapper::toDTO);
 	}
 

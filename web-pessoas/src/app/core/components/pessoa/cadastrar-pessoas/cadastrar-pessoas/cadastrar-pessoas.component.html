@@ -1,3 +1,59 @@
-<p>
-  cadastrar-pessoas works!
-</p>
+<div class="main-div">
+  <mat-card class="center width50">
+    <form autocomplete="off" novalidate [formGroup]="cadastro" >
+      <mat-card-content>
+        <div class="form-group">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Nome completo:</mat-label>
+            <input matInput placeholder="Informe o nome completo:" formControlName="nomeCompleto">
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>E-mail: </mat-label>
+            <input matInput placeholder="Informe o E-mail:" formControlName="email">
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Celular:</mat-label>
+            <input  type="text" matInput  placeholder="Informe o celular:" formControlName="celular">
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>CPF:</mat-label>
+            <input matInput nccCpfCnpjMask  maxlength="14" placeholder="Informe o cpf:" formControlName="cpf">
+          </mat-form-field>
+        </div>
+
+        <div class="form-group">
+          <mat-form-field class="example-full-widnth" appearance="fill">
+            <mat-label>Data Nascimento</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dataNascimento">
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker">
+              <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+            </mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+        </div>
+
+        <div class="form-group"  *ngIf="cadastro.dataCriacao != null">
+          <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Data Criacao</mat-label>
+            <input matInput formControlName="dataCriacao"  mask="telMask">
+          </mat-form-field>
+        </div>
+
+      </mat-card-content>
+      <mat-card-actions>
+        <button (click)="submit()" color="primary" mat-raised-button>Salvar</button>
+        <button [routerLink]="'/pessoas'" color="warn" mat-raised-button>Cancelar</button>
+      </mat-card-actions>
+    </form>
+  </mat-card>
+</div>
