@@ -21,4 +21,7 @@ public interface PessoaService {
    void deletarPessoa(Long id);
 
    Page<PessoaDTO> findAll(PageRequest pageOptions);
+   
+   Page<PessoaDTO> findByExample(PessoaDTO pessoaDTO, PageRequest pageOptions);
+
 }

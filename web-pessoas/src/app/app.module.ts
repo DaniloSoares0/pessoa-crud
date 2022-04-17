@@ -17,12 +17,13 @@ import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { HttpClientModule } from '@angular/common/http';
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import { NgxCpfCnpjModule } from 'ngx-cpf-cnpj';
+import { NgxMaskModule } from 'ngx-mask';
 
 registerLocaleData(localePt);
 
@@ -31,10 +32,11 @@ registerLocaleData(localePt);
   declarations: [
     AppComponent,
     ListarPessoasComponent,
-    CadastrarPessoasComponent
+    CadastrarPessoasComponent,
+
   ],
   imports: [
-
+    NgxMaskModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -52,12 +54,9 @@ registerLocaleData(localePt);
     MatNativeDateModule,
     MatDatepickerModule,
     HttpClientModule,
-    NgxCpfCnpjModule,
-
-
-
+    NgxCpfCnpjModule
   ],
-  providers: [ {provide: LOCALE_ID, useValue: 'pt-BR' } ],
+  providers: [{ provide: LOCALE_ID, useValue: 'pt-BR' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

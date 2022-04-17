@@ -67,12 +67,13 @@ public class PessoaController {
 	
 	@GetMapping("/buscar-por-cpf/{cpf}")
 	@ApiOperation(value = "Lista pessoas com filtros e com paginação.")
-	public Page<PessoaDTO> findPerson(
+	public Page<PessoaDTO> findPessoa(@PathVariable("cpf") String cpf, 
 			@RequestParam(name = "pageIndex" , defaultValue = "0") Integer page,
 			@RequestParam(name = "pageSize" , defaultValue = "10") Integer size,
 			@RequestParam(name = "sortDirection" , defaultValue = "ASC") String sortDirection){
-
-		return pessoaService.findAll(PageRequest.of(page, size, Sort.Direction.valueOf(sortDirection), "id"));
+		
+		return pessoaService.findByExample(PessoaDTO.builder().cpf(cpf).build(), 
+				PageRequest.of(page, size, Sort.Direction.valueOf(sortDirection), "id"));
 	}
 	
 	
